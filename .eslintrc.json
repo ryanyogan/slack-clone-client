@@ -1,0 +1,7 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["equimper", "prettier"],
+  "globals": {
+    "document": true
+  }
+}
