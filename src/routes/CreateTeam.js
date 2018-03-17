@@ -19,22 +19,26 @@ class CreateTeam extends Component {
   onSubmit = async e => {
     e.preventDefault();
 
-    const { name } = this.state;
-    const response = await this.props.mutate({
-      variables: { name },
-    });
-    const { ok, errors } = response.data.createTeam;
+    try {
+      const { name } = this.state;
+      const response = await this.props.mutate({
+        variables: { name },
+      });
+      const { ok, errors } = response.data.createTeam;
 
-    if (ok) {
-      return this.props.history.push('/');
+      if (ok) {
+        return this.props.history.push('/');
+      }
+
+      const err = {};
+      errors.forEach(({ path, message }) => {
+        err[`${path}Error`] = message;
+      });
+
+      this.setState(err);
+    } catch (error) {
+      this.props.history.push('/login');
     }
-
-    const err = {};
-    errors.forEach(({ path, message }) => {
-      err[`${path}Error`] = message;
-    });
-
-    this.setState(err);
   };
 
   render() {
