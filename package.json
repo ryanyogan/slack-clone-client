@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.3.0",
     "apollo-client-preset": "^1.0.8",
+    "apollo-link-context": "^1.0.7",
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",
     "react": "^16.2.0",
