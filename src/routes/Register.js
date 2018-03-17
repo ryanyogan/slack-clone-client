@@ -10,7 +10,7 @@ class Register extends Component {
     password: '',
     usernameError: '',
     passwordError: '',
-    emailError: ''
+    emailError: '',
   };
 
   onChange = ({ target: { name, value } }) =>
@@ -18,7 +18,7 @@ class Register extends Component {
       [name]: value,
       usernameError: '',
       passwordError: '',
-      emailError: ''
+      emailError: '',
     });
 
   onSubmit = async e => {
@@ -26,7 +26,7 @@ class Register extends Component {
 
     const { username, password, email } = this.state;
     const response = await this.props.mutate({
-      variables: { username, password, email }
+      variables: { username, password, email },
     });
     const { ok, errors } = response.data.register;
 
@@ -49,21 +49,20 @@ class Register extends Component {
       password,
       usernameError,
       passwordError,
-      emailError
+      emailError,
     } = this.state;
 
     const errorList = [usernameError, passwordError, emailError].filter(
-      error => error.length && error
+      error => error.length && error,
     );
 
     return (
       <Container text style={{ marginTop: '20px' }}>
         <Header as="h2">Register</Header>
         <Form onSubmit={this.onSubmit}>
-          <Form.Field>
+          <Form.Field error={!!usernameError}>
             <label htmlFor="username">Username</label>
             <Form.Input
-              error={!!usernameError}
               name="username"
               autoComplete="username"
               onChange={this.onChange}
@@ -72,10 +71,9 @@ class Register extends Component {
               fluid
             />
           </Form.Field>
-          <Form.Field>
+          <Form.Field error={!!emailError}>
             <label htmlFor="email">E-Mail</label>
             <Form.Input
-              error={!!emailError}
               name="email"
               type="email"
               autoComplete="email"
@@ -84,10 +82,9 @@ class Register extends Component {
               placeholder="E-Mail"
             />
           </Form.Field>
-          <Form.Field>
+          <Form.Field error={!!passwordError}>
             <label htmlFor="password">Password</label>
             <Form.Input
-              error={!!passwordError}
               name="password"
               type="password"
               onChange={this.onChange}
