@@ -24,10 +24,10 @@ class CreateTeam extends Component {
       const response = await this.props.mutate({
         variables: { name },
       });
-      const { ok, errors } = response.data.createTeam;
+      const { ok, team, errors } = response.data.createTeam;
 
       if (ok) {
-        return this.props.history.push('/');
+        return this.props.history.push(`/teams/${team.id}`);
       }
 
       const err = {};
@@ -79,6 +79,9 @@ const createTeamMutation = gql`
   mutation CreatTeam($name: String!) {
     createTeam(name: $name) {
       ok
+      team {
+        id
+      }
       errors {
         path
         message

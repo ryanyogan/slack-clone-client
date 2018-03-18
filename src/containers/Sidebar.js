@@ -11,7 +11,11 @@ const Sidebar = ({ data: { allTeams, loading }, currentTeamId }) => {
     return null;
   }
 
-  const team = allTeams.filter(t => parseInt(t.id, 10) === currentTeamId)[0];
+  const team = currentTeamId
+    ? allTeams.filter(
+        t => parseInt(t.id, 10) === parseInt(currentTeamId, 10),
+      )[0]
+    : allTeams[0];
 
   let username = '';
 

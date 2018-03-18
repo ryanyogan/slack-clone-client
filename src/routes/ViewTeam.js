@@ -6,10 +6,10 @@ import Messages from '../components/Messages';
 import SendMessage from '../components/SendMessage';
 import AppLayout from '../components/AppLayout';
 
-const ViewTeam = () => (
+const ViewTeam = ({ match: { params } }) => (
   <AppLayout>
     <Header channelName="general" />
-    <Sidebar currentTeamId={7} />
+    <Sidebar currentTeamId={params.teamId} />
     <Messages>
       <ul className="message-list">
         <li />
