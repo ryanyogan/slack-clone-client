@@ -27,15 +27,15 @@ class CreateTeam extends Component {
       const { ok, team, errors } = response.data.createTeam;
 
       if (ok) {
-        return this.props.history.push(`/teams/${team.id}`);
+        this.props.history.push(`/teams/${team.id}`);
+      } else {
+        const err = {};
+        errors.forEach(({ path, message }) => {
+          err[`${path}Error`] = message;
+        });
+
+        this.setState(err);
       }
-
-      const err = {};
-      errors.forEach(({ path, message }) => {
-        err[`${path}Error`] = message;
-      });
-
-      this.setState(err);
     } catch (error) {
       this.props.history.push('/login');
     }
